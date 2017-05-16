@@ -3,8 +3,6 @@ node('master') {
         checkout scm
     }
 
-#    def props = readProperties('job.properties')
-
     stage('Tests') {
         sh 'echo "very good yes yes a+"'
     }
