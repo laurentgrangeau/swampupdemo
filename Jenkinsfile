@@ -4,6 +4,7 @@ node('master') {
     }
 
     stage('Tests') {
+        sh 'nosetests '
         sh 'echo "very good yes yes a+"'
     }
 
