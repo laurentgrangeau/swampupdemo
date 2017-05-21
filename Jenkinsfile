@@ -1,4 +1,4 @@
-node('master') {
+dockerNode(image: "python:3.6.1-alpine") {
     stage('Checkout') {
         checkout scm
     }
