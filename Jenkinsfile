@@ -4,10 +4,8 @@ node('master') {
     }
 
     stage('Tests') {
-        withEnv(["PATH+PYTHON=${WORKSPACE}/python/bin"]) {
-            sh 'pip install tox'
-            sh 'tox'
-        }
+        sh 'pip install tox'
+        sh 'cd app && tox'
     }
 
     stage('Build') {
