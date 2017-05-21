@@ -7,7 +7,9 @@ node('master') {
 
     stage('Fucking sonar') {
         withSonarQubeEnv('SonarQube') {
-            sh "sonar-scanner -Dsonar.projectKey=${props.project} -Dsonar.sources=."
+            sh "curl https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.0.3.778-linux.zip -o sonar-scanner.zip && unzip sonar-scanner.zip"
+            sh "ls -r sonar-scanner"
+            sh "sonar-scanner/sonar-scanner -Dsonar.projectKey=${props.project} -Dsonar.sources=."
         }
     }
 
