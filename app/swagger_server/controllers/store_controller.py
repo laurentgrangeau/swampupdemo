@@ -1,6 +1,6 @@
 import connexion
-from swagger_server.models.body2 import Body2
-from swagger_server.models.inline_response2003 import InlineResponse2003
+from swagger_server.models.body_2 import Body2
+from swagger_server.models.inline_response_200_3 import InlineResponse2003
 from datetime import date, datetime
 from typing import List, Dict
 from six import iteritems
