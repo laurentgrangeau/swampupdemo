@@ -3,6 +3,18 @@ node('master') {
         checkout scm
     }
 
+    def props = readProperties file: ${WORKSPACE}/job.properties
+
+    stage('Fucking sonar') {
+        withSonarQubeEnv('SonarQube') {
+            sh "sonar-scanner -Dsonar.projectKey=${props.project} -Dsonar.sources=."
+        }
+    }
+
+    stage('Standing by') {
+        input('The rest probably wont work for now, waiting for a python3 install')
+    }
+
     stage('Tests') {
         sh 'pip install tox'
         sh 'cd app && tox'
