@@ -3,7 +3,7 @@ node('master') {
         checkout scm
     }
 
-    def props = readProperties file: ${WORKSPACE}/job.properties
+    def props = readProperties file: "${WORKSPACE}/job.properties"
 
     stage('Fucking sonar') {
         withSonarQubeEnv('SonarQube') {
