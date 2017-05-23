@@ -7,6 +7,7 @@ node('master') {
 
     stage('Tests') {
         sh 'cd app'
+        sh 'pip3 install --upgrade requests'
         sh "pip3 install -r ${WORKSPACE}/app/test-requirements.txt"
         sh 'nosetests -v --with-xunit --cover-erase --cover-branches --cover-xml --with-coverage'
     }
