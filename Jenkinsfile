@@ -23,8 +23,7 @@ node('master') {
             -Dsonar.core.codeCoveragePlugin=cobertura \
             -Dsonar.python.coverage.forceZeroCoverage=true \
             -Dsonar.python.xunit.reportPath=nosetests.xml \
-            -Dsonar.python.xunit.skipDetails=false \
-            -Dsonar.verbose=true "
+            -Dsonar.python.xunit.skipDetails=false"
         }
     }
 
