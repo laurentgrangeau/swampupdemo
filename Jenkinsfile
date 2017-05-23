@@ -19,8 +19,7 @@ node('master') {
             sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=${props.project} \
             -Dsonar.projectVersion='1.0.0' -Dsonar.projectName=${props.project} \
             -Dsonar.sources='app' -Dsonar.host.url=$SONAR_HOST_URL \
-            -Dsonar.jdbc.url=$SONAR_JDBC_URL -Dsonar.jdbc.username='$SONAR_JDBC_USERNAME' \
-            -Dsonar.jdbc.password=$SONAR_JDBC_PASSWORD -DfailIfNoTests=false \
+            -DfailIfNoTests=false \
             -Dsonar.python.coverage.reportPath=coverage.xml \
             -Dsonar.dynamicAnalysis=reuseReports \
             -Dsonar.core.codeCoveragePlugin=cobertura \
