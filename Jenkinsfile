@@ -6,8 +6,10 @@ node('master') {
     def props = readProperties file: "${WORKSPACE}/job.properties"
 
     stage('Tests') {
-        sh 'pip3 install tox'
-        sh 'cd app && tox'
+    withEnv(["PATH+PYTHON=~/miniconda/bin"]) {
+            sh 'cd app'
+            sh 'nosetests -v --with-xunit --cover-erase --cover-branches --cover-xml --with-coverage'
+        }
     }
 
     stage('Quality tests') {
