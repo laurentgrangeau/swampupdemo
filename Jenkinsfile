@@ -24,8 +24,7 @@ node('master') {
             -Dsonar.python.coverage.forceZeroCoverage=true \
             -Dsonar.python.xunit.reportPath=nosetests.xml \
             -Dsonar.python.xunit.skipDetails=false \
-            -Dsonar.verbose=true
-            "
+            -Dsonar.verbose=true "
         }
     }
 
