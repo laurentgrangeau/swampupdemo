@@ -8,6 +8,7 @@ node('master') {
     stage('Tests') {
     withEnv(["PATH+PYTHON=~/miniconda/bin"]) {
             sh 'cd app'
+            sh 'pip install test-requirements.txt'
             sh 'nosetests -v --with-xunit --cover-erase --cover-branches --cover-xml --with-coverage'
         }
     }
