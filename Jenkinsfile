@@ -9,11 +9,11 @@ node('master') {
         sh 'echo "Lou lou lou je cueille des pommes"'
         sh 'curl -O https://repo.continuum.io/miniconda/Miniconda3-4.3.14-Linux-x86_64.sh'
         sh 'echo "Lou lou lou et toi itou"'
-        sh 'chmod +x Mini*;./Mini* -b -p ./python'
+        sh 'chmod +x Mini*;./Mini* -b -p /usr/local/miniconda'
     }
 
     stage('Tests') {
-    withEnv(["PATH+PYTHON=${WORKSPACE}/python/bin"]) {
+    withEnv(["PATH+PYTHON=/usr/local/miniconda/bin"]) {
             sh 'pip install tox'
             sh 'cd app && tox'
         }
@@ -38,7 +38,7 @@ node('master') {
     }
 
     stage('Build') {
-        withEnv(["PATH+PYTHON=${WORKSPACE}/python/bin"]) {
+        withEnv(["PATH+PYTHON=/usr/local/miniconda/bin"]) {
             sh 'python setup.py bdist_wheel'
         }
     }
