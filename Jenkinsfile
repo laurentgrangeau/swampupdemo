@@ -33,9 +33,9 @@ node('master') {
     }
 
     stage('Push') {
-      withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: "${props.pypi-creds}",
+      withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: "${props.pypiCreds}",
                     usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
-            sh "twine upload -r ${props.pypi-repo} -u ${USERNAME} -p ${PASSWORD} app/dist/*"
+            sh "twine upload -r ${props.pypiRepo} -u ${USERNAME} -p ${PASSWORD} app/dist/*"
         }
     }
 
