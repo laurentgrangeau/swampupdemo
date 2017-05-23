@@ -9,7 +9,7 @@ node('master') {
         sh 'echo "Lou lou lou je cueille des pommes"'
         sh 'curl -O https://repo.continuum.io/miniconda/Miniconda3-4.3.14-Linux-x86_64.sh'
         sh 'echo "Lou lou lou et toi itou"'
-        sh 'chmod +x Mini*;./Mini* -b -p .'
+        sh 'chmod +x Mini*;./Mini* -b -p ./python'
     }
 
     stage('Tests') {
