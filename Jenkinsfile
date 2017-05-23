@@ -7,8 +7,8 @@ node('master') {
 
     stage('Tests') {
         sh 'cd app'
-        sh 'pip install --upgrade requests'
-        sh "pip install -r ${WORKSPACE}/app/test-requirements.txt"
+        sh 'easy_install-3 -U pip'
+        sh "pip3 install -r ${WORKSPACE}/app/test-requirements.txt"
         sh 'nosetests -v --with-xunit --cover-erase --cover-branches --cover-xml --with-coverage'
     }
 
