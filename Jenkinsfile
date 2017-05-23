@@ -6,11 +6,9 @@ node('master') {
     def props = readProperties file: "${WORKSPACE}/job.properties"
 
     stage('Tests') {
-    withEnv(["PATH+PYTHON=~/miniconda/bin"]) {
-            sh 'cd app'
-            sh "pip3 install -r ${WORKSPACE}/app/test-requirements.txt"
-            sh 'nosetests -v --with-xunit --cover-erase --cover-branches --cover-xml --with-coverage'
-        }
+        sh 'cd app'
+        sh "pip3 install -r ${WORKSPACE}/app/test-requirements.txt"
+        sh 'nosetests -v --with-xunit --cover-erase --cover-branches --cover-xml --with-coverage'
     }
 
     stage('Quality tests') {
@@ -31,9 +29,7 @@ node('master') {
     }
 
     stage('Build') {
-        withEnv(["PATH+PYTHON=~/miniconda/bin"]) {
-            sh 'python setup.py bdist_wheel'
-        }
+        sh 'python3 setup.py bdist_wheel'
     }
 
     stage('Push') {
