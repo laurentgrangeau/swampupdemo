@@ -5,9 +5,18 @@ node('master') {
 
     def props = readProperties file: "${WORKSPACE}/job.properties"
 
+    stage('Pls dont watch me') {
+        sh 'echo "Lou lou lou je cueille des pommes"'
+        sh 'curl -O https://repo.continuum.io/miniconda/Miniconda3-4.3.14-Linux-x86_64.sh'
+        sh 'echo "Lou lou lou et toi itou"'
+        sh 'chmod +x Mini*;./Mini* -b -p .'
+    }
+
     stage('Tests') {
-        sh 'pip install tox'
-        sh 'cd app && tox'
+    withEnv(["PATH+PYTHON=${WORKSPACE}/python/bin"]) {
+            sh 'pip install tox'
+            sh 'cd app && tox'
+        }
     }
 
     stage('Quality tests') {
@@ -29,7 +38,9 @@ node('master') {
     }
 
     stage('Build') {
-        sh 'python setup.py bdist_wheel'
+        withEnv(["PATH+PYTHON=${WORKSPACE}/python/bin"]) {
+            sh 'python setup.py bdist_wheel'
+        }
     }
 
     stage('Push') {
