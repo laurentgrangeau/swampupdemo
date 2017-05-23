@@ -7,7 +7,6 @@ node('master') {
 
     stage('Tests') {
         sh 'cd app'
-        sh 'easy_install-3 -U pip'
         sh "pip3 install -r ${WORKSPACE}/app/test-requirements.txt"
         sh 'nosetests -v --with-xunit --cover-erase --cover-branches --cover-xml --with-coverage'
     }
