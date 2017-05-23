@@ -14,7 +14,7 @@ node('master') {
 
     stage('Tests') {
     withEnv(["PATH+PYTHON=~/miniconda/bin"]) {
-            sh 'pip install tox'
+            sh 'pip3 install tox'
             sh 'cd app && tox'
         }
     }
