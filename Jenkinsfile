@@ -29,13 +29,13 @@ node('master') {
     }
 
     stage('Build') {
-        sh 'python3 setup.py bdist_wheel'
+        sh 'python3 app/setup.py bdist_wheel'
     }
 
     stage('Push') {
       withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: "${props.pypi-creds}",
                     usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
-            sh "twine upload -r ${props.pypi-repo} -u ${USERNAME} -p ${PASSWORD}"
+            sh "twine upload -r ${props.pypi-repo} -u ${USERNAME} -p ${PASSWORD} app/dist/*"
         }
     }
 
