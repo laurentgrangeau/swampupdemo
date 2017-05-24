@@ -3,19 +3,39 @@ node('master') {
         checkout scm
     }
 
+    def props = readProperties file: "${WORKSPACE}/job.properties"
+
     stage('Tests') {
-        sh 'nosetests '
-        sh 'echo "very good yes yes a+"'
+        sh 'cd app'
+        sh "pip3 install -r ${WORKSPACE}/app/test-requirements.txt"
+        sh 'nosetests -v --with-xunit --cover-erase --cover-branches --cover-xml --with-coverage'
+    }
+
+    stage('Quality tests') {
+        def scannerHome = tool 'SonarqubeScanner';
+        withSonarQubeEnv('SonarQube') {
+            sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=${props.project} \
+            -Dsonar.projectVersion='1.0.0' -Dsonar.projectName=${props.project} \
+            -Dsonar.sources='app' -Dsonar.host.url=$SONAR_HOST_URL \
+            -DfailIfNoTests=false \
+            -Dsonar.python.coverage.reportPath=coverage.xml \
+            -Dsonar.dynamicAnalysis=reuseReports \
+            -Dsonar.core.codeCoveragePlugin=cobertura \
+            -Dsonar.python.coverage.forceZeroCoverage=true \
+            -Dsonar.python.xunit.reportPath=nosetests.xml \
+            -Dsonar.python.xunit.skipDetails=false"
+        }
     }
 
     stage('Build') {
-        sh 'python setup.py bdist_wheel'
+        sh 'rm -rf dist'
+        sh 'python3 app/setup.py bdist_wheel'
     }
 
     stage('Push') {
-      withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: "${props.pypi-creds}",
+      withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: "${props.pypiCreds}",
                     usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
-            sh "twine upload -r ${props.pypi-repo} -u ${USERNAME} -p ${PASSWORD}"
+            sh "twine upload --repository-url ${props.pypiRepo} -u ${USERNAME} -p ${PASSWORD} dist/*.whl"
         }
     }
 
