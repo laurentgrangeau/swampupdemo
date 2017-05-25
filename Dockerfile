@@ -1,11 +1,11 @@
 FROM python:3.6.1-alpine
 
 WORKDIR /deploy/app
-COPY app /deploy/app
+RUN mkdir ${HOME}/pip
+COPY pip.ini ${HOME}/pip/pip.ini
 
-RUN pip3 install -r requirements.txt
-RUN pip3 install gunicorn
+RUN pip3 install swampup
 
 EXPOSE 8080
 
-ENTRYPOINT ["python", "-m", "swagger_server"]
+ENTRYPOINT ["python", "-m", "swampup"]
