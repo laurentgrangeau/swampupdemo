@@ -23,6 +23,7 @@ git remote add origin https://github.com/john/mynewrepo.git
 ```
 4. Change the values in job.properties to fit your project
 5. Create a multibranch pipeline job on Jenkins, and point it to your repo
+6. Input your credentials to push to artifactory. The credentials ID must be pypi-creds
 4. Push, and **for the first time you'll also have to set the new origin as the default** :
 ```
 git push -u origin --all
