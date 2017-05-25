@@ -4,7 +4,7 @@ WORKDIR /deploy/app
 RUN mkdir ${HOME}/pip
 COPY pip.ini ${HOME}/pip/pip.ini
 
-RUN pip3 install swampup
+RUN pip3 install swagger-server
 
 EXPOSE 8080
 
