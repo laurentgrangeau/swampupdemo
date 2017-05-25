@@ -1,8 +1,8 @@
 # coding: utf-8
 
 from __future__ import absolute_import
-from swagger_server.models.pet_category import PetCategory
-from swagger_server.models.pet_tags import PetTags
+from swaggerserver.models.pet_category import PetCategory
+from swaggerserver.models.pet_tags import PetTags
 from .base_model_ import Model
 from datetime import date, datetime
 from typing import List, Dict

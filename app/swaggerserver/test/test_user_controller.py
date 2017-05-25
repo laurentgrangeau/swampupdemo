@@ -2,9 +2,9 @@
 
 from __future__ import absolute_import
 
-from swagger_server.models.body_3 import Body3
-from swagger_server.models.body_4 import Body4
-from swagger_server.models.body_5 import Body5
+from swaggerserver.models.body_3 import Body3
+from swaggerserver.models.body_4 import Body4
+from swaggerserver.models.body_5 import Body5
 from . import BaseTestCase
 from six import BytesIO
 from flask import json

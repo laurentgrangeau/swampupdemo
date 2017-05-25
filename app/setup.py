@@ -31,7 +31,7 @@ setup(
     """,
     entry_points={
         'console_scripts': [
-            'swagger-server=swagger_server.__main__:main'
+            'swaggerserver=swaggerserver.__main__:main'
         ]
     },
 )

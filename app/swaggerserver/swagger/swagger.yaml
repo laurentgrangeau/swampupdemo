@@ -58,7 +58,7 @@ paths:
       - petstore_auth:
         - "write:pets"
         - "read:pets"
-      x-swagger-router-controller: "swagger_server.controllers.pet_controller"
+      x-swagger-router-controller: "swaggerserver.controllers.pet_controller"
     put:
       tags:
       - "pet"
@@ -89,7 +89,7 @@ paths:
       - petstore_auth:
         - "write:pets"
         - "read:pets"
-      x-swagger-router-controller: "swagger_server.controllers.pet_controller"
+      x-swagger-router-controller: "swaggerserver.controllers.pet_controller"
   /pet/findByStatus:
     get:
       tags:
@@ -127,7 +127,7 @@ paths:
       - petstore_auth:
         - "write:pets"
         - "read:pets"
-      x-swagger-router-controller: "swagger_server.controllers.pet_controller"
+      x-swagger-router-controller: "swaggerserver.controllers.pet_controller"
   /pet/findByTags:
     get:
       tags:
@@ -162,7 +162,7 @@ paths:
         - "write:pets"
         - "read:pets"
       deprecated: true
-      x-swagger-router-controller: "swagger_server.controllers.pet_controller"
+      x-swagger-router-controller: "swaggerserver.controllers.pet_controller"
   /pet/{petId}:
     get:
       tags:
@@ -191,7 +191,7 @@ paths:
           description: "Pet not found"
       security:
       - api_key: []
-      x-swagger-router-controller: "swagger_server.controllers.pet_controller"
+      x-swagger-router-controller: "swaggerserver.controllers.pet_controller"
     post:
       tags:
       - "pet"
@@ -227,7 +227,7 @@ paths:
       - petstore_auth:
         - "write:pets"
         - "read:pets"
-      x-swagger-router-controller: "swagger_server.controllers.pet_controller"
+      x-swagger-router-controller: "swaggerserver.controllers.pet_controller"
     delete:
       tags:
       - "pet"
@@ -257,7 +257,7 @@ paths:
       - petstore_auth:
         - "write:pets"
         - "read:pets"
-      x-swagger-router-controller: "swagger_server.controllers.pet_controller"
+      x-swagger-router-controller: "swaggerserver.controllers.pet_controller"
   /pet/{petId}/uploadImage:
     post:
       tags:
@@ -295,7 +295,7 @@ paths:
       - petstore_auth:
         - "write:pets"
         - "read:pets"
-      x-swagger-router-controller: "swagger_server.controllers.pet_controller"
+      x-swagger-router-controller: "swaggerserver.controllers.pet_controller"
   /store/inventory:
     get:
       tags:
@@ -316,7 +316,7 @@ paths:
               format: "int32"
       security:
       - api_key: []
-      x-swagger-router-controller: "swagger_server.controllers.store_controller"
+      x-swagger-router-controller: "swaggerserver.controllers.store_controller"
   /store/order:
     post:
       tags:
@@ -341,7 +341,7 @@ paths:
             $ref: "#/definitions/inline_response_200_3"
         400:
           description: "Invalid Order"
-      x-swagger-router-controller: "swagger_server.controllers.store_controller"
+      x-swagger-router-controller: "swaggerserver.controllers.store_controller"
   /store/order/{orderId}:
     get:
       tags:
@@ -371,7 +371,7 @@ paths:
           description: "Invalid ID supplied"
         404:
           description: "Order not found"
-      x-swagger-router-controller: "swagger_server.controllers.store_controller"
+      x-swagger-router-controller: "swaggerserver.controllers.store_controller"
     delete:
       tags:
       - "store"
@@ -395,7 +395,7 @@ paths:
           description: "Invalid ID supplied"
         404:
           description: "Order not found"
-      x-swagger-router-controller: "swagger_server.controllers.store_controller"
+      x-swagger-router-controller: "swaggerserver.controllers.store_controller"
   /user:
     post:
       tags:
@@ -416,7 +416,7 @@ paths:
       responses:
         default:
           description: "successful operation"
-      x-swagger-router-controller: "swagger_server.controllers.user_controller"
+      x-swagger-router-controller: "swaggerserver.controllers.user_controller"
   /user/createWithArray:
     post:
       tags:
@@ -439,7 +439,7 @@ paths:
       responses:
         default:
           description: "successful operation"
-      x-swagger-router-controller: "swagger_server.controllers.user_controller"
+      x-swagger-router-controller: "swaggerserver.controllers.user_controller"
   /user/createWithList:
     post:
       tags:
@@ -462,7 +462,7 @@ paths:
       responses:
         default:
           description: "successful operation"
-      x-swagger-router-controller: "swagger_server.controllers.user_controller"
+      x-swagger-router-controller: "swaggerserver.controllers.user_controller"
   /user/login:
     get:
       tags:
@@ -500,7 +500,7 @@ paths:
               description: "date in UTC when token expires"
         400:
           description: "Invalid username/password supplied"
-      x-swagger-router-controller: "swagger_server.controllers.user_controller"
+      x-swagger-router-controller: "swaggerserver.controllers.user_controller"
   /user/logout:
     get:
       tags:
@@ -515,7 +515,7 @@ paths:
       responses:
         default:
           description: "successful operation"
-      x-swagger-router-controller: "swagger_server.controllers.user_controller"
+      x-swagger-router-controller: "swaggerserver.controllers.user_controller"
   /user/{username}:
     get:
       tags:
@@ -541,7 +541,7 @@ paths:
           description: "Invalid username supplied"
         404:
           description: "User not found"
-      x-swagger-router-controller: "swagger_server.controllers.user_controller"
+      x-swagger-router-controller: "swaggerserver.controllers.user_controller"
     put:
       tags:
       - "user"
@@ -568,7 +568,7 @@ paths:
           description: "Invalid user supplied"
         404:
           description: "User not found"
-      x-swagger-router-controller: "swagger_server.controllers.user_controller"
+      x-swagger-router-controller: "swaggerserver.controllers.user_controller"
     delete:
       tags:
       - "user"
@@ -589,7 +589,7 @@ paths:
           description: "Invalid username supplied"
         404:
           description: "User not found"
-      x-swagger-router-controller: "swagger_server.controllers.user_controller"
+      x-swagger-router-controller: "swaggerserver.controllers.user_controller"
 securityDefinitions:
   petstore_auth:
     type: "oauth2"
