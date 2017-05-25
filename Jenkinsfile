@@ -40,7 +40,7 @@ node('master') {
     }
 
     stage('Deploy') {
-        sh "docker build -t ${props.project} ."
+        sh "docker build -t ${props.project} --build-arg PROJECT=${props.project}  ."
         sh "docker run -dp 8080:8080 ${props.project}"
     }
 }
