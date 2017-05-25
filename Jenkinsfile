@@ -28,7 +28,7 @@ node('master') {
     }
 
     stage('Build') {
-        sh 'rm -rf dist'
+        sh 'rm -rf dist build *.egg-info'
         sh 'python3 app/setup.py bdist_wheel --universal'
     }
 
