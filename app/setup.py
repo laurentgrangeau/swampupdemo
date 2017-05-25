@@ -3,8 +3,8 @@
 import sys
 from setuptools import setup, find_packages
 
-NAME = "swagger_server"
-VERSION = "1.0.0"
+NAME = "swaggerserver"
+VERSION = "1.1.0"
 
 # To install the library, run the following
 #
@@ -31,7 +31,7 @@ setup(
     """,
     entry_points={
         'console_scripts': [
-            'swagger-server=swagger_server.__main__:main'
+            'swaggerserver=swaggerserver.__main__:main'
         ]
     },
 )

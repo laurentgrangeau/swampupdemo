@@ -1,11 +1,15 @@
 FROM python:3.6.1-alpine
 
+ARG project
+
 WORKDIR /deploy/app
 RUN mkdir /etc/pip
 COPY pip.conf /etc/pip.conf
 
-RUN pip3 install swagger-server
+RUN pip3 install $project
 
 EXPOSE 8080
 
-ENTRYPOINT ["python3", "-m", "swagger-server"]
+RUN echo "python3 -m $project" > entrypoint.sh && chmod +x entrypoint.sh
+
+# ENTRYPOINT [ "sh", "/deploy/app/entrypoint.sh" ]
