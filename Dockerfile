@@ -8,4 +8,4 @@ RUN pip3 install swagger-server
 
 EXPOSE 8080
 
-ENTRYPOINT ["python", "-m", "swagger-server"]
+ENTRYPOINT ["python3", "-m", "swagger-server"]
