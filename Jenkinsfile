@@ -40,6 +40,7 @@ node('master') {
     }
 
     stage('Deploy') {
-        sh "echo 'Donde esta la bibliotheca ?'"
+        sh "docker build -t ${props.project} ."
+        sh "docker run -p 8080:8080 ${props.project}"
     }
 }
