@@ -41,6 +41,6 @@ node('master') {
 
     stage('Deploy') {
         sh "docker build -t ${props.project} --build-arg PROJECT=${props.project}  ."
-        sh "docker service update --image ${props.project} ${props.project}"
+        sh "docker service update --image ${props.project} --args ${props.project} ${props.project}"
     }
 }
