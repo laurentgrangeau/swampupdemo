@@ -29,13 +29,13 @@ node('master') {
 
     stage('Build') {
         sh 'rm -rf dist build *.egg-info'
-        sh 'python3 app/setup.py sdist'
+        sh 'python3 app/setup.py bdist_wheel --universal --python-tag py3'
     }
 
     stage('Push') {
       withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: "${props.pypiCreds}",
                     usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
-            sh "twine upload --repository-url ${props.pypiRepo} -u ${USERNAME} -p ${PASSWORD} dist/*.tar.gz"
+            sh "twine upload --repository-url ${props.pypiRepo} -u ${USERNAME} -p ${PASSWORD} dist/*.whl"
         }
     }
 
