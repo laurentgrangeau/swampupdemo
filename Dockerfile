@@ -12,4 +12,4 @@ EXPOSE 8080
 
 RUN echo "python3 -m $project" > entrypoint.sh && chmod +x entrypoint.sh
 
-# ENTRYPOINT [ "sh", "/deploy/app/entrypoint.sh" ]
+ENTRYPOINT [ "sh", "/deploy/app/entrypoint.sh" ]

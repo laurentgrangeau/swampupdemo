@@ -3,7 +3,10 @@
 import sys
 from setuptools import setup, find_packages
 
-NAME = "swaggerserver"
+with open('../job.properties', 'r') as props_file:
+    props = {l.split('=')[0]: l.split('=')[1] for l in props_file}
+
+NAME = props['project'][:-1]
 VERSION = "1.1.0"
 
 # To install the library, run the following
@@ -13,7 +16,7 @@ VERSION = "1.1.0"
 # prerequisite: setuptools
 # http://pypi.python.org/pypi/setuptools
 
-REQUIRES = ["connexion"]
+REQUIRES = ["connexion==1.0.129"]
 
 setup(
     name=NAME,

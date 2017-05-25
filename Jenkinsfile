@@ -28,7 +28,7 @@ node('master') {
     }
 
     stage('Build') {
-        sh 'rm -rf dist build *.egg-info'
+        sh 'rm -rf app/dist app/build app/*.egg-info'
         sh 'cd app; python3 setup.py bdist_wheel --universal --python-tag py3'
     }
 
@@ -40,7 +40,7 @@ node('master') {
     }
 
     stage('Deploy') {
-        sh "docker build -t ${props.project} --build-arg PROJECT=${props.project}  ."
+        sh "docker build -t ${props.project} --build-arg project=${props.project}  ."
         try {
             sh "docker service create --publish ${props.port}:8080 --name ${props.project} ${props.project}"
         } catch (error) {
