@@ -1,8 +1,8 @@
 FROM python:3.6.1-alpine
 
 WORKDIR /deploy/app
-RUN mkdir ${HOME}/pip
-COPY pip.ini ${HOME}/pip/pip.ini
+RUN mkdir /etc/pip
+COPY pip.conf /etc/pip.conf
 
 RUN pip3 install swagger-server
 

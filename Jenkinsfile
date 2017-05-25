@@ -29,7 +29,7 @@ node('master') {
 
     stage('Build') {
         sh 'rm -rf dist'
-        sh 'python3 app/setup.py bdist_wheel'
+        sh 'python3 app/setup.py bdist_wheel --universal'
     }
 
     stage('Push') {
