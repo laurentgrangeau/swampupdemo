@@ -28,18 +28,19 @@ node('master') {
     }
 
     stage('Build') {
-        sh 'rm -rf dist'
-        sh 'python3 app/setup.py bdist_wheel'
+        sh 'rm -rf dist build *.egg-info'
+        sh 'cd app; python3 setup.py bdist_wheel --universal --python-tag py3'
     }
 
     stage('Push') {
       withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: "${props.pypiCreds}",
                     usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
-            sh "twine upload --repository-url ${props.pypiRepo} -u ${USERNAME} -p ${PASSWORD} dist/*.whl"
+            sh "twine upload --repository-url ${props.pypiRepo} -u ${USERNAME} -p ${PASSWORD} app/dist/*.whl"
         }
     }
 
     stage('Deploy') {
-        sh "echo 'Donde esta la bibliotheca ?'"
+        sh "docker build -t ${props.project} ."
+        sh "docker run -dp 8080:8080 ${props.project}"
     }
 }
