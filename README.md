@@ -22,11 +22,15 @@ git remote remove origin
 git remote add origin https://github.com/john/mynewrepo.git
 ```
 4. Change the values in job.properties to fit your project
-5. Don't forget to commit your changes before pushing to github
+5. If you're reusing the same app, change the imports with :
+```
+find . -type f -exec sed -i 's/swaggerserver/<new project name>/g' {} \;
+```
+6. Don't forget to commit your changes before pushing to github
 6. Create a multibranch pipeline job on Jenkins, and point it to your repo
 7. Input your credentials to push to artifactory. The credentials ID must be pypi-creds
 8. Push, and **for the first time you'll also have to set the new origin as the default** :
 ```
 git push -u origin --all
 ```
-9. That's it ! Start coding !
+10. That's it ! Start coding !
