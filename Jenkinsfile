@@ -40,7 +40,7 @@ node('master') {
     }
 
     stage('Deploy') {
-        sh "docker build -t ${props.project} --build-arg project=${props.project}  ."
+        sh "docker build -t ${props.project} --build-arg project=${props.project}  . --no-cache"
         try {
             sh "docker service create --publish ${props.port}:8080 --name ${props.project} ${props.project}"
         } catch (error) {
